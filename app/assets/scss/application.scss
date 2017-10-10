@@ -22,6 +22,8 @@ $path: "/static/images/";
 @import "toolkit/shared_placeholders/_mixins.scss";
 
 // Digital Marketplace Front-end toolkit styles
+@import "toolkit/site.scss";
+
 @import "toolkit/_breadcrumb.scss";
 @import "toolkit/_browse-list.scss";
 @import "toolkit/_buttons.scss";

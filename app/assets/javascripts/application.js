@@ -7,6 +7,9 @@
 //= include ../../../node_modules/govuk_frontend_toolkit/javascripts/vendor/polyfills/bind.js
 //= include ../../../bower_components/jquery/dist/jquery.js
 //= include ../../../bower_components/hogan/web/builds/3.0.2/hogan-3.0.2.js
+
+//= include ../../../bower_components/digitalmarketplace-frontend-toolkit/toolkit/javascripts/site.js
+
 //= include ../../../bower_components/digitalmarketplace-frontend-toolkit/toolkit/javascripts/option-select.js
 //= include ../../../bower_components/digitalmarketplace-frontend-toolkit/toolkit/javascripts/list-entry.js
 //= include ../../../bower_components/digitalmarketplace-frontend-toolkit/toolkit/javascripts/word-counter.js

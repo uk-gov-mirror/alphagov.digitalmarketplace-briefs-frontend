@@ -27,7 +27,18 @@
             {% if errors and errors[question.id] %}
               {{ forms[question.type](question, brief, errors) }}
             {% else %}
+            <h1>IN HERE YO</h1>
+            {{ govukInput({
+              label: {
+                text: "What is the name of the event?",
+                classes: "govuk-label--l",
+                isPageHeading: true
+              },
+              id: "event-name",
+              name: "event-name"
+            }) }}
               {{ forms[question.type](question, brief, {}) }}
+              </h1>After form thing</h1>
             {% endif %}
           {% else %}
             {% if question.question_advice %}

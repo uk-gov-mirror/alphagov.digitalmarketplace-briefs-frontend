@@ -27,25 +27,23 @@
             {% if errors and errors[question.id] %}
               {{ forms[question.type](question, brief, errors) }}
             {% else %}
-            <h1>IN HERE YO {{question}}</h1>
+            {% if question.question_advice %}
+            <span class="question-advice">
+              {{ question.question_advice }}
+            </span>
+          {% endif %}
             {{ govukInput({
               label: {
-                text: forms[question],
+                text: question['question'],
                 classes: "govuk-label--l",
                 isPageHeading: true
               },
               id: "event-name",
               name: "event-name"
             }) }}
-              {{ forms[question.type](question, brief, {}) }}
-              </h1>After form thing</h1>
             {% endif %}
           {% else %}
-            {% if question.question_advice %}
-              <span class="question-advice">
-                {{ question.question_advice }}
-              </span>
-            {% endif %}
+
             {% for question in question.questions %}
               {% if errors and errors[question.id] %}
                 {{ forms[question.type](question, brief, errors) }}

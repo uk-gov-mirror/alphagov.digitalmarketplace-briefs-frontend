@@ -27,10 +27,10 @@
             {% if errors and errors[question.id] %}
               {{ forms[question.type](question, brief, errors) }}
             {% else %}
-            <h1>IN HERE YO</h1>
+            <h1>IN HERE YO {{question}}</h1>
             {{ govukInput({
               label: {
-                text: "What is the name of the event?",
+                text: forms[question],
                 classes: "govuk-label--l",
                 isPageHeading: true
               },

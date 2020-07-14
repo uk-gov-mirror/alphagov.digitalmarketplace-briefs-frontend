@@ -1,5 +1,6 @@
 {% extends "_base_page.html" %}
 {% import "toolkit/forms/macros/forms.html" as forms %}
+{% from "govuk-frontend/components/input/macro.njk" import govukInput %}
 
 {% block pageTitle %}
   {{ question.question }} – Digital Marketplace
@@ -28,18 +29,18 @@
               {{ forms[question.type](question, brief, errors) }}
             {% else %}
             {% if question.question_advice %}
+            <h1>{{ question }}</h1>
             <span class="question-advice">
               {{ question.question_advice }}
             </span>
           {% endif %}
             {{ govukInput({
-              label: {
-                text: question['question'],
-                classes: "govuk-label--l",
-                isPageHeading: true
+              "id": question['id'],
+              "name": question['name'],
+              "label": {
+                "text": question['question'],
+                "classes": "govuk-label--l",
               },
-              id: "event-name",
-              name: "event-name"
             }) }}
             {% endif %}
           {% else %}

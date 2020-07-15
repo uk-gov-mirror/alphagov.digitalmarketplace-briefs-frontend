@@ -35,8 +35,8 @@
             </span>
           {% endif %}
             {{ govukInput({
-              "id": question['id'],
-              "name": question['name'],
+              "id": 'input-'+question['id'],
+              "name": question['id'],
               "label": {
                 "text": question['question'],
                 "classes": "govuk-label--l",

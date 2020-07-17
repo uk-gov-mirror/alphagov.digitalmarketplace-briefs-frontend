@@ -3,6 +3,7 @@
 {% if question.question_advice %}
     {{ question.question_advice }}
 {% endif %}
+{#TODO: Format differently if type is number#}
 {{ govukInput ({
           "classes": "app-text-input--height-compatible",
           "errorMessage": errors[question.id],

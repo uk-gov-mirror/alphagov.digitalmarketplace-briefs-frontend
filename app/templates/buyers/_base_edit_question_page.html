@@ -25,7 +25,7 @@
       <div class="govuk-grid-column-two-thirds">
           {% if question.type == 'text' %}
       <h1>in here</h1>
-          {% endif %}
+          {% else %}
           {% if question.type != 'multiquestion' %}
             {% if errors and errors[question.id] %}
               {{ forms[question.type](question, brief, errors) }}
@@ -45,6 +45,7 @@
                 {{ forms[question.type](question, brief, {}) }}
               {% endif %}
             {% endfor %}
+          {% endif %}
           {% endif %}
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
           {% block save_button %}{% endblock %}

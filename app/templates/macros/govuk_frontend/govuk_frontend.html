@@ -1,0 +1,21 @@
+{% from "govuk-frontend/components/input/macro.njk" import govukInput %}
+{% macro govuk_input(question, brief, errors) %}
+{% if question.question_advice %}
+    {{ question.question_advice }}
+{% endif %}
+{{ govukInput ({
+          "classes": "app-text-input--height-compatible",
+          "errorMessage": errors[question.id],
+          "hint": {
+            "text": question['hint'],
+          },
+          "id": "input-"+question['id'],
+          "label": {
+            "text": question['question'],
+            "classes": 'question-heading govuk-visually-hidden'
+          },
+          "name": question['id'],
+          "type": "text",
+          "value": brief[question.id]
+        }) }}
+{%- endmacro %}

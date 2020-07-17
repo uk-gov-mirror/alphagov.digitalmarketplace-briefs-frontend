@@ -1,5 +1,6 @@
 {% extends "_base_page.html" %}
 {% import "toolkit/forms/macros/forms.html" as forms %}
+{% import "macros/govuk_frontend/govuk_frontend.html" as govuk_frontend %}
 
 {% block pageTitle %}
   {{ question.question }} – Digital Marketplace
@@ -24,24 +25,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
           {% if question.type == 'text' %}
-              {% if question.question_advice %}
-                {{ question.question_advice }}
-              {% endif %}
-              {{ govukInput ({
-          "classes": "app-text-input--height-compatible",
-          "errorMessage": errors[question.id],
-          "hint": {
-            "text": question['hint'],
-          },
-          "id": "input-"+question['id'],
-          "label": {
-            "text": question['question'],
-            "classes": 'question-heading govuk-visually-hidden'
-          },
-          "name": question['id'],
-          "type": "text",
-          "value": brief[question.id]
-        }) }}
+             {{ govuk_frontend.govuk_input(question, brief, errors)}}
           {% else %}
           {% if question.type != 'multiquestion' %}
             {% if errors and errors[question.id] %}

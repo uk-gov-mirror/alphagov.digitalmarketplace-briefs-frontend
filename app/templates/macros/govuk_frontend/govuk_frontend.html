@@ -3,14 +3,39 @@
 {% if question.question_advice %}
     {{ question.question_advice }}
 {% endif %}
-{#TODO: Format differently if type is number#}
+{% if question.type == 'number' %}
+  {% if question.limits %}
+    {% if question.limits.integer_only %}
+      {% set inputmode = 'numeric' %}
+      {% set pattern = '[0-9]*' %}
+      {% if question.limits.max_value is defined %}
+        {% if question.limits.max_value | string() | length > 10 %}
+          {% set widthClass = ' govuk-input--width-20'%}
+        {% elif question.limits.max_value | string() | length  > 5 %}
+        {{ question.limits.max_value |string() |length}}
+          {% set widthClass = ' govuk-input--width-10'%}
+        {% elif question.limits.max_value | string() | length  > 4 %}
+          {% set widthClass = ' govuk-input--width-5'%}
+        {% elif question.limits.max_value | string() | length  > 3 %}
+          {% set widthClass = ' govuk-input--width-4'%}
+        {% elif question.limits.max_value | string() | length  > 2 %}
+          {% set widthClass = ' govuk-input--width-3'%}
+        {% else %}
+          {% set widthClass = ' govuk-input--width-2'%}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endif %}
 {{ govukInput ({
-          "classes": "app-text-input--height-compatible",
+          "classes": "app-text-input--height-compatible" + widthClass,
           "errorMessage": errors[question.id],
           "hint": {
             "text": question['hint'],
           },
           "id": "input-"+question['id'],
+          "inputmode": inputmode,
+          "pattern": pattern,
           "label": {
             "text": question['question'],
             "classes": 'question-heading govuk-visually-hidden'

@@ -25,7 +25,8 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
           {% if question.type == 'text' or question.type == 'number' %}
-             {{ govuk_frontend.govuk_input(question, brief, errors)}}
+             {{ question.question_advice }}
+             {{ govukInput(govuk_input)}}
           {% else %}
           {% if question.type != 'multiquestion' %}
             {% if errors and errors[question.id] %}
@@ -41,6 +42,7 @@
             {% endif %}
             {% for question in question.questions %}
                {% if question.type == 'text' or question.type == 'number' %}
+                    {{ question.question_advice }}
                         {{ govuk_frontend.govuk_input(question, brief, errors)}}
                     {% else %}
                     {% if errors and errors[question.id] %}

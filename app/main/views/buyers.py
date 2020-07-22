@@ -21,6 +21,7 @@ from dmutils.dates import get_publishing_dates
 from dmutils.flask import timed_render_template as render_template
 from dmutils.formats import DATETIME_FORMAT
 from dmutils.forms.errors import govuk_errors
+from dmutils.forms.helpers import govuk_text_input
 from dmcontent.html import to_summary_list_rows
 from datetime import datetime
 
@@ -93,14 +94,18 @@ def start_new_brief(framework_slug, lot_slug):
     )
 
     section = content.get_section(content.get_next_editable_section_id())
+    question = section.questions[0]
+    brief={}
+    question_to_govuk_input = govuk_text_input(question, brief, None)
 
     return render_template(
         "buyers/create_brief_question.html",
-        brief={},
+        brief=brief,
         framework=framework,
         lot=lot,
         section=section,
-        question=section.questions[0],
+        question=question,
+        govuk_input=question_to_govuk_input
     ), 200
 
 
@@ -130,6 +135,8 @@ def create_new_brief(framework_slug, lot_slug):
     except HTTPError as e:
         update_data = section.unformat_data(update_data)
         errors = govuk_errors(section.get_error_messages(e.message))
+
+        question=section.questions[0]
 
         return render_template(
             "buyers/create_brief_question.html",
